@@ -1,0 +1,68 @@
+(define (problem MimicLabs_Lab6_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the carrot in the bin)
+    (:regions
+      (basket_init_region
+          (:target table)
+          (:ranges (
+              (-0.1 -0.41 0.1 -0.39)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (contain_region
+          (:target basket_1)
+      )
+      (object_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.1 0 0.1)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:camera
+    (:ranges (
+        (1.2 0.78539816339 -0.26179938779 1.4 1.0471975512 0.26179938779)
+      )
+    )
+    (:jitter_mode normal)
+  )
+
+  (:fixtures
+    table - table
+  )
+
+  (:objects
+    basket_1 - basket
+    object_1 - robocasa_carrot_6
+  )
+
+  (:obj_of_interest
+    basket_1
+    object_1
+  )
+
+  (:init
+    (On object_1 table_object_init_region)
+    (On basket_1 table_basket_init_region)
+  )
+
+  (:goal
+    (In object_1 basket_1_contain_region)
+  )
+
+  (:demonstration
+    (Grasp object_1)
+    (In object_1 basket_1_contain_region)
+  )
+
+)

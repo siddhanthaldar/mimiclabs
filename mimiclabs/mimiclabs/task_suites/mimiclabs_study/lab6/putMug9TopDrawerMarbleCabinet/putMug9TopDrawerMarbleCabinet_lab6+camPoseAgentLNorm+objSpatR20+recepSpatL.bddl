@@ -1,0 +1,69 @@
+(define (problem MimicLabs_Lab6_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the mug in the top drawer of the cabinet)
+    (:regions
+      (wooden_cabinet_init_region
+          (:target table)
+          (:ranges (
+              (-0.01 0.39 0.01 0.41)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_region
+          (:target wooden_cabinet_1)
+      )
+      (object_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.3 0 -0.1)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:camera
+    (:ranges (
+        (1.2 0.78539816339 -1.0472 1.4 1.0471975512 -0.523599)
+      )
+    )
+    (:jitter_mode normal)
+  )
+
+  (:fixtures
+    table - table
+    wooden_cabinet_1 - marble_cabinet
+  )
+
+  (:objects
+    object_1 - robocasa_mug_9
+  )
+
+  (:obj_of_interest
+    object_1
+    wooden_cabinet_1
+  )
+
+  (:init
+    (On object_1 table_object_init_region)
+    (On wooden_cabinet_1 table_wooden_cabinet_init_region)
+    (Open wooden_cabinet_1_top_region)
+  )
+
+  (:goal
+    (And (In object_1 wooden_cabinet_1_top_region))
+  )
+
+  (:demonstration
+    (Grasp object_1)
+    (In object_1 wooden_cabinet_1_top_region)
+  )
+
+)

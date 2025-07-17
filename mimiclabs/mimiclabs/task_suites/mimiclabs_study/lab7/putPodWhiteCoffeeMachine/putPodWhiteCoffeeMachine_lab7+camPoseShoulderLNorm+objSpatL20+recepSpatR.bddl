@@ -1,0 +1,70 @@
+(define (problem MimicLabs_Lab7_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language make coffee)
+    (:regions
+      (coffee_machine_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.35 -0.1 -0.25)
+            )
+          )
+          (:yaw_rotation (
+              (2.69159 2.74159)
+            )
+          )
+      )
+      (pod_region
+          (:target coffee_machine_1)
+      )
+      (object_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 0.1 0 0.3)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:camera
+    (:ranges (
+        (1.2 0.78539816339 2.094 1.4 1.0471975512 2.61799)
+      )
+    )
+    (:jitter_mode normal)
+  )
+
+  (:fixtures
+    table - table
+  )
+
+  (:objects
+    coffee_machine_1 - coffee_machine
+    coffee_pod_1 - coffee_pod
+  )
+
+  (:obj_of_interest
+    coffee_machine_1
+    coffee_pod_1
+  )
+
+  (:init
+    (On coffee_machine_1 table_coffee_machine_init_region)
+    (On coffee_pod_1 table_object_init_region)
+    (Open coffee_machine_1)
+  )
+
+  (:goal
+    (And (Close coffee_machine_1) (In coffee_pod_1 coffee_machine_1_pod_region))
+  )
+
+  (:demonstration
+    (Grasp coffee_pod_1)
+    (In coffee_pod_1 coffee_machine_1_pod_region)
+    (Close coffee_machine_1)
+  )
+
+)

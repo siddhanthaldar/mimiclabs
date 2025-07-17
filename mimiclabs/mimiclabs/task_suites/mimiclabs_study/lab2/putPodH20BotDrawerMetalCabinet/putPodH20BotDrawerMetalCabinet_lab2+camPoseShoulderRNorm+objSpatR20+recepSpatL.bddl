@@ -1,0 +1,81 @@
+(define (problem MimicLabs_Lab2_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the coffee pod in the bottom drawer of the cabinet)
+    (:regions
+      (wooden_cabinet_init_region
+          (:target table)
+          (:ranges (
+              (-0.01 0.39 0.01 0.41)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (bottom_region
+          (:target wooden_cabinet_1)
+      )
+      (object_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.3 0 -0.1)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:camera
+    (:ranges (
+        (1.2 0.78539816339 -2.61799 1.4 1.0471975512 -2.094)
+      )
+    )
+    (:jitter_mode normal)
+  )
+
+  (:fixtures
+    table - table
+    wooden_cabinet_1 - metal_cabinet
+  )
+
+  (:objects
+    object_1 - coffee_pod
+  )
+
+  (:textures
+    (object_1
+      (:type fractal)
+      (:hsv (
+          (20 200 200 20 200 200)
+        )
+      )
+      (:turbulence 2)
+      (:sigma 5)
+    )
+  )
+
+  (:obj_of_interest
+    object_1
+    wooden_cabinet_1
+  )
+
+  (:init
+    (On object_1 table_object_init_region)
+    (On wooden_cabinet_1 table_wooden_cabinet_init_region)
+    (Open wooden_cabinet_1_bottom_region)
+  )
+
+  (:goal
+    (And (In object_1 wooden_cabinet_1_bottom_region))
+  )
+
+  (:demonstration
+    (Grasp object_1)
+    (In object_1 wooden_cabinet_1_bottom_region)
+  )
+
+)

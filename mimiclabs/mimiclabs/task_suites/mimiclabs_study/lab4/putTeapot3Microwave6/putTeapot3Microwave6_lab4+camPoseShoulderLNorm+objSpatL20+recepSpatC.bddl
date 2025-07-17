@@ -1,0 +1,72 @@
+(define (problem MimicLabs_Lab4_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the teapot in the microwave)
+    (:regions
+      (microwave_init_region
+          (:target table)
+          (:ranges (
+              (0.25 -0.01 0.30 0.01)
+            )
+          )
+          (:yaw_rotation (
+              (-1.65806 -1.48353)
+            )
+          )
+      )
+      (object_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 0.1 0 0.3)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_side
+          (:target microwave_1)
+      )
+      (heating_region
+          (:target microwave_1)
+      )
+    )
+
+  (:camera
+    (:ranges (
+        (1.2 0.78539816339 2.094 1.4 1.0471975512 2.61799)
+      )
+    )
+    (:jitter_mode normal)
+  )
+
+  (:fixtures
+    table - table
+    microwave_1 - microwave_6
+  )
+
+  (:objects
+    object_1 - robocasa_teapot_3
+  )
+
+  (:obj_of_interest
+    object_1
+    microwave_1
+  )
+
+  (:init
+    (On microwave_1 table_microwave_init_region)
+    (Open microwave_1)
+    (On object_1 table_object_init_region)
+  )
+
+  (:goal
+    (And (In object_1 microwave_1_heating_region))
+  )
+
+  (:demonstration
+    (Grasp object_1)
+    (In object_1 microwave_1_heating_region)
+  )
+
+)

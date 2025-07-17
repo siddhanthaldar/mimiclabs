@@ -1,0 +1,62 @@
+(define (problem MimicLabs_Lab6_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language close the top drawer of the cabinet)
+    (:regions
+      (wooden_cabinet_init_region
+          (:target table)
+          (:ranges (
+              (-0.01 0.39 0.01 0.41)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (top_region
+          (:target wooden_cabinet_1)
+      )
+      (object_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.1 0 0.1)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:camera
+    (:ranges (
+        (1.2 0.78539816339 0.523599 1.4 1.0471975512 1.0472)
+      )
+    )
+    (:jitter_mode normal)
+  )
+
+  (:fixtures
+    table - table
+    wooden_cabinet_1 - marble_cabinet
+  )
+
+  (:obj_of_interest
+    wooden_cabinet_1
+  )
+
+  (:init
+    (On wooden_cabinet_1 table_wooden_cabinet_init_region)
+    (Open wooden_cabinet_1_top_region)
+  )
+
+  (:goal
+    (And (Close wooden_cabinet_1_top_region))
+  )
+
+  (:demonstration
+    (Close wooden_cabinet_1_top_region)
+  )
+
+)
