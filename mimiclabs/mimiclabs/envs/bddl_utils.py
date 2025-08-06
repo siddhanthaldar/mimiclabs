@@ -155,8 +155,8 @@ def robosuite_parse_problem(problem_filename):
                 get_scenes(t, scene_properties, group)
             elif t == ":language":
                 group.pop(0)
-                language_instruction = group
-
+                # language_instruction = group
+                language_instruction = " ".join(group)
             elif t == ":init":
                 group.pop(0)
                 initial_state = group

@@ -156,7 +156,7 @@ class BDDLBaseDomain(RobosuiteEnv):
 
         self.bddl_file_name = bddl_file_name
         self.parsed_problem = BDDLUtils.robosuite_parse_problem(self.bddl_file_name)
-
+        
         self.obj_of_interest = self.parsed_problem["obj_of_interest"]
 
         self._assert_problem_name()
@@ -442,11 +442,12 @@ class BDDLBaseDomain(RobosuiteEnv):
         mujoco_arena.set_origin([0, 0, 0])
 
         if len(self.parsed_problem["camera"].get("ranges", [])) > 0:
+            self.agentview_pose = self._sample_camera_pose(
+                degrees=(self.parsed_problem["camera"]["unit"] == "degrees")
+            )
             self._setup_camera(
                 mujoco_arena,
-                agentview_pose=self._sample_camera_pose(
-                    degrees=(self.parsed_problem["camera"]["unit"] == "degrees")
-                ),
+                agentview_pose=self.agentview_pose,
             )
         else:
             self._setup_camera(mujoco_arena)
@@ -1235,7 +1236,7 @@ class BDDLBaseDomain(RobosuiteEnv):
 
     @property
     def language_instruction(self):
-        return self.parsed_problem["language"]
+        return self.parsed_problem["language_instruction"]
 
     def get_object(self, object_name):
         for query_dict in [

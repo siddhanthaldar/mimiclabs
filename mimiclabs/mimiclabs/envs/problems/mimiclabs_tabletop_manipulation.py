@@ -207,12 +207,22 @@ class MimicLabs_Tabletop_Manipulation_Base(BDDLBaseDomain):
                 pos=[1.0, 0, 1.6],
                 quat=[0.5963678, 0.3799282, 0.3799282, 0.5963678],
             )
+            # mujoco_arena.set_camera(
+            #     camera_name="agentviewleft",
+            #     pos=[1.0, -0.12, 1.6],
+            #     quat=[0.5963678, 0.3799282, 0.3799282, 0.5963678],
+            # )
         else:
             mujoco_arena.set_camera(
                 camera_name="agentview",
                 pos=agentview_pose["pos"],
                 quat=agentview_pose["quat"],
             )
+            # mujoco_arena.set_camera(
+            #     camera_name="agentviewleft",
+            #     pos=agentview_pose["pos"] + np.array([0, -0.12, 0]),
+            #     quat=agentview_pose["quat"],
+            # )
 
         # For visualization purpose
         mujoco_arena.set_camera(
