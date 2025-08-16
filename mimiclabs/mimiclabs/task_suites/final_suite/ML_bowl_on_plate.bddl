@@ -5,7 +5,7 @@
       (plate_init_region
           (:target table)
           (:ranges (
-              (-0.2 -0.25 0.15 0.25)
+              (-0.2 -0.2 0.1 0.2)
             )
           )
           (:yaw_rotation (
@@ -16,7 +16,7 @@
       (bowl_init_region
           (:target table)
           (:ranges (
-              (-0.2 -0.25 0.15 0.25)
+              (-0.2 -0.2 0.1 0.2)
             )
           )
           (:yaw_rotation (
