@@ -49,10 +49,11 @@ except ImportError:
 
 try:
     # try to import robocasa environments
-    with disable_module_import("robocasa"):
-        from robocasa.models import assets_root as robocasa_assets_root
+    # with disable_module_import("robocasa"):
+    #     from robocasa.models import assets_root as robocasa_assets_root
 
-        ROBOCASA_PATH = os.path.dirname(os.path.dirname(robocasa_assets_root))
+    #     ROBOCASA_PATH = os.path.dirname(os.path.dirname(robocasa_assets_root))
+    ROBOCASA_PATH = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa"
 except ImportError:
     print("WARNING: could not import robocasa envs")
 
@@ -1164,10 +1165,13 @@ class BDDLBaseDomain(RobosuiteEnv):
         # Resetting all object textures to default
         for _, obj in self.objects_dict.items():
             objtex = obj.asset.find("./texture")
+            # try:
             texname = objtex.attrib["name"]
             asset.find(f"./texture[@name='{texname}']").attrib["file"] = objtex.attrib[
                 "file"
             ]
+            # except:
+            #     pass
 
         modified_xml_string = ET.tostring(root, encoding="utf8").decode("utf8")
         super().reset_from_xml_string(modified_xml_string)

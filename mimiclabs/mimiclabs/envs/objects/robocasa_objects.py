@@ -11,8 +11,9 @@ from libero.libero.envs.base_object import (
 from ...utils import disable_module_import
 
 
-with disable_module_import("robocasa"):
-    from robocasa.models import assets_root as robocasa_assets_root
+# with disable_module_import("robocasa"):
+#     from robocasa.models import assets_root as robocasa_assets_root
+robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
 BASE_ASSET_PATH = os.path.join(robocasa_assets_root, "objects")
 BASE_FIXTURE_PATH = os.path.join(robocasa_assets_root, "fixtures")
 
@@ -1213,3 +1214,43 @@ class RobocasaSink(RobocasaObject):
 
         # delete the temporary file
         # os.remove(tmp_xml)
+
+
+
+########################################################
+
+@register_object
+class RobocasaPlate19(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_plate_1_9",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/plate/plate_19/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+@register_object
+class RobocasaSpatula0(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_spatula_0",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/spatula/spatula_0/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+@register_object
+class RobocasaPan1(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_pan_1",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/pan/pan_1/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
