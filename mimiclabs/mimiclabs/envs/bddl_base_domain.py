@@ -53,7 +53,8 @@ try:
     #     from robocasa.models import assets_root as robocasa_assets_root
 
     #     ROBOCASA_PATH = os.path.dirname(os.path.dirname(robocasa_assets_root))
-    ROBOCASA_PATH = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa"
+    # ROBOCASA_PATH = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa"
+    ROBOCASA_PATH = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa"
 except ImportError:
     print("WARNING: could not import robocasa envs")
 
