@@ -1,5 +1,6 @@
 import os
 import re
+import random
 
 from robosuite.models.objects import MujocoXMLObject
 import xml.etree.ElementTree as ET
@@ -13,8 +14,8 @@ from ...utils import disable_module_import
 
 # with disable_module_import("robocasa"):
 #     from robocasa.models import assets_root as robocasa_assets_root
-# robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
-robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+# robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
 BASE_ASSET_PATH = os.path.join(robocasa_assets_root, "objects")
 BASE_FIXTURE_PATH = os.path.join(robocasa_assets_root, "fixtures")
 
@@ -1255,3 +1256,104 @@ class RobocasaPan1(RobocasaObject):
             name=name,
             joints=[dict(type="free")],
         )
+
+@register_object
+class RobocasaBowl(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_bowl",
+    ):
+        path = os.path.join(BASE_ASSET_PATH, f"objaverse/bowl")
+        dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
+        while True:
+            id = random.randint(0, len(dirs) - 1)
+            success = False
+            try:
+                super().__init__(
+                    os.path.join(path, f"{dirs[id]}/model.xml"),
+                    name=name,
+                    joints=[dict(type="free")],
+                )
+                success = True
+            except Exception as e:
+                continue 
+            if success:
+                break
+
+
+@register_object
+class RobocasaPlate(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_plate",
+    ):
+        path = os.path.join(BASE_ASSET_PATH, f"objaverse/plate")
+        dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
+        while True:
+            id = random.randint(0, len(dirs) - 1)
+            success = False
+            try:
+                super().__init__(
+                    os.path.join(path, f"{dirs[id]}/model.xml"),
+                    name=name,
+                    joints=[dict(type="free")],
+                )
+                success = True
+            except Exception as e:
+                continue
+            if success:
+                break
+
+
+@register_object
+class RobocasaMug(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_mug",
+    ):
+        path = os.path.join(BASE_ASSET_PATH, f"objaverse/mug")
+        dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
+        while True:
+            id = random.randint(0, len(dirs) - 1)
+            success = False
+            try:
+                super().__init__(
+                    os.path.join(path, f"{dirs[id]}/model.xml"),
+                    name=name,
+                    joints=[dict(type="free")],
+                )
+                success = True
+            except Exception as e:
+                continue
+            if success:
+                break
+
+
+@register_object
+class RobocasaFruitsAndVeggies(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_fruits_and_veggies",
+    ):
+        fruits_and_veggies = [
+            "lime", "mango", "onion", "orange", "peach", # "mushroom",
+            "tomato",  "tangerine", "pear", # "squash", "potato",
+            # "sweet_potato",
+        ]
+        while True:
+            self.fruit_or_veggie = random.choice(fruits_and_veggies)
+            path = os.path.join(BASE_ASSET_PATH, f"objaverse/{self.fruit_or_veggie}")
+            dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
+            id = random.randint(0, len(dirs) - 1)
+            success = False
+            try:
+                super().__init__(
+                    os.path.join(path, f"{dirs[id]}/model.xml"),
+                    name=name,
+                    joints=[dict(type="free")],
+                )
+                success = True
+            except Exception as e:
+                continue
+            if success:
+                break
