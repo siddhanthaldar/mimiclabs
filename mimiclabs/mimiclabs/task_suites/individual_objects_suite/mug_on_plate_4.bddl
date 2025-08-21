@@ -1,0 +1,57 @@
+(define (problem MimicLabs_Lab1_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the mug on the plate)
+    (:regions
+      (plate_init_region
+          (:target table)
+          (:ranges (
+              (-0.15 -0.175 0.05 0.175)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (mug_init_region
+          (:target table)
+          (:ranges (
+              (-0.15 -0.175 0.05 0.175)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:fixtures
+    table - table
+  )
+
+  (:objects
+    plate - robocasa_plate_1_9
+    mug - robocasa_mug_8
+  )
+
+  (:obj_of_interest
+    plate
+    mug
+  )
+
+  (:init
+    (On plate table_plate_init_region)
+    (On mug table_mug_init_region)
+  )
+
+  (:goal
+    (And (On mug plate))
+  )
+
+  (:demonstration
+    (Grasp mug)
+    (On mug plate)
+  )
+
+)
