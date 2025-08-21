@@ -1336,7 +1336,7 @@ class RobocasaFruitsAndVeggies(RobocasaObject):
         name="robocasa_fruits_and_veggies",
     ):
         fruits_and_veggies = [
-            "lime", "mango", "onion", "orange", "peach", # "mushroom",
+            "lime", "onion", "orange", "peach", # "mango", "mushroom",
             "tomato",  "tangerine", "pear", # "squash", "potato",
             # "sweet_potato",
         ]
