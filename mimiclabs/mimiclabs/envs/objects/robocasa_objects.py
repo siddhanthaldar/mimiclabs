@@ -14,8 +14,8 @@ from ...utils import disable_module_import
 
 # with disable_module_import("robocasa"):
 #     from robocasa.models import assets_root as robocasa_assets_root
-# robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
-robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+# robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
 BASE_ASSET_PATH = os.path.join(robocasa_assets_root, "objects")
 BASE_FIXTURE_PATH = os.path.join(robocasa_assets_root, "fixtures")
 
@@ -1357,3 +1357,144 @@ class RobocasaFruitsAndVeggies(RobocasaObject):
                 continue
             if success:
                 break
+
+
+@register_object
+class RobocasaApple1(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_apple_1",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/apple/apple_1/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaBellPepper1(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_bell_pepper_1",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/bell_pepper/bell_pepper_1/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaLemon1(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_lemon_1",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/lemon/lemon_1/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaLime1(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_lime_1",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/lime/lime_1/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaOnion2(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_onion_2",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/onion/onion_2/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaOrange5(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_orange_5",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/orange/orange_5/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+@register_object
+class RobocasaPeach0(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_peach_0",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/peach/peach_0/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaTomato0(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_tomato_0",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/tomato/tomato_0/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+@register_object
+class RobocasaLadle0(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_ladle_0",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/ladle/ladle_0/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaCondiment0(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_condiment_0",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/condiment/condiment_0/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )
+
+
+@register_object
+class RobocasaTray1(RobocasaObject):
+    def __init__(
+        self,
+        name="robocasa_tray_1",
+    ):
+        super().__init__(
+            os.path.join(BASE_ASSET_PATH, "objaverse/tray/tray_1/model.xml"),
+            name=name,
+            joints=[dict(type="free")],
+        )

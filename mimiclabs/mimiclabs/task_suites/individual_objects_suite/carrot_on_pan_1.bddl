@@ -1,0 +1,57 @@
+(define (problem MimicLabs_Lab1_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the carrot on the pan)
+    (:regions
+      (pan_init_region
+          (:target table)
+          (:ranges (
+              (-0.15 -0.175 0.05 0.175)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (carrot_init_region
+          (:target table)
+          (:ranges (
+              (-0.15 -0.175 0.05 0.175)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:fixtures
+    table - table
+  )
+
+  (:objects
+    pan - robocasa_pan_1
+    carrot - robocasa_carrot_0
+  )
+
+  (:obj_of_interest
+    pan
+    carrot
+  )
+
+  (:init
+    (On pan table_pan_init_region)
+    (On carrot table_carrot_init_region)
+  )
+
+  (:goal
+    (And (On carrot pan))
+  )
+
+  (:demonstration
+    (Grasp carrot)
+    (On carrot pan)
+  )
+
+)
