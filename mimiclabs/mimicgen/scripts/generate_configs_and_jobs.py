@@ -54,9 +54,12 @@ def generate_config_templates(args):
         c.experiment.source.dataset_path = os.path.join(
             args.source_demos_dir, name, "demo.hdf5"
         )
-        assert os.path.exists(
-            c.experiment.source.dataset_path
-        ), f"Source demos not found at {c.experiment.source.dataset_path}"
+        if not os.path.exists(c.experiment.source.dataset_path):
+            print(f"Source demos not found at {c.experiment.source.dataset_path}")
+            continue
+        # assert os.path.exists(
+        #     c.experiment.source.dataset_path
+        # ), f"Source demos not found at {c.experiment.source.dataset_path}"
         c.experiment.generation.path = os.path.join(args.generation_dir, name)
         c.experiment.generation.guarantee = True
         c.experiment.generation.num_trials = args.num_demos

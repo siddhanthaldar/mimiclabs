@@ -6,6 +6,7 @@ Example usage:
         --dataset /path/to/src_dataset.hdf5
 """
 
+import os
 import json
 import h5py
 import argparse
@@ -64,6 +65,14 @@ if __name__ == "__main__":
     with h5py.File(args.dataset, "r") as f:
         env_meta = json.loads(f["data"].attrs["env_args"])
         bddl_file_name = env_meta["env_kwargs"]["bddl_file_name"]
+
+        # get path of bddl in current repo
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(current_dir)
+        parent_dir = os.path.dirname(parent_dir)
+        bddl_name = bddl_file_name.split("/")[-1]
+        bddl_file_name = os.path.join(parent_dir, "mimiclabs", "task_suites", "individual_objects_suite", bddl_name)
+
         parsed_problem = BDDLUtils.robosuite_parse_problem(bddl_file_name)
         if len(parsed_problem["demonstration_states"]) == 0:
             print(
