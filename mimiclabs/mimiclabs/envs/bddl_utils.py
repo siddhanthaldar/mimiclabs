@@ -161,7 +161,9 @@ def robosuite_parse_problem(problem_filename):
                 group.pop(0)
                 initial_state = group
             elif t == ":goal":
-                package_predicates(group[1], goal_state, "", "goals")
+                # package_predicates(group[1], goal_state, "", "goals")
+                for grp in group[1:]:
+                    package_predicates(grp, goal_state, "", "goals")
             elif t == ":demonstration":
                 group.pop(0)
                 demonstration_states = group

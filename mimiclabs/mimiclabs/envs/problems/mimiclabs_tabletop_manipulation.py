@@ -144,19 +144,39 @@ class MimicLabs_Tabletop_Manipulation_Base(BDDLBaseDomain):
         """
         Check if the goal is achieved. Consider conjunction goals at the moment
         """
-        goal_conj = self.parsed_problem["goal_state"][0]
-        goal_state = self.parsed_problem["goal_state"][1:]
-        if goal_conj == "and":
-            result = True
-            for state in goal_state:
-                result = self._eval_predicate(state) and result
-        elif goal_conj == "or":
-            result = False
-            for state in goal_state:
-                result = self._eval_predicate(state) or result
-        else:
-            raise ValueError(f"Unsupported goal conjunction {goal_conj}.")
-        return result
+        # goal_conj = self.parsed_problem["goal_state"][0]
+        # goal_state = self.parsed_problem["goal_state"][1:]
+        # if goal_conj == "and":
+        #     result = True
+        #     for state in goal_state:
+        #         result = self._eval_predicate(state) and result
+        # elif goal_conj == "or":
+        #     result = False
+        #     for state in goal_state:
+        #         result = self._eval_predicate(state) or result
+        # else:
+        #     raise ValueError(f"Unsupported goal conjunction {goal_conj}.")
+        # return result
+
+        final_result = None
+        # iterate over goal_state 2 at a time
+        for i in range(0, len(self.parsed_problem["goal_state"]), 2):
+            goal_conj = self.parsed_problem["goal_state"][i]
+            goal_state = self.parsed_problem["goal_state"][i+1]
+            if goal_conj == "and":
+                # result = True
+                # for state in goal_state:
+                result = self._eval_predicate(goal_state) #and result
+                final_result = result if final_result is None else final_result and result
+            elif goal_conj == "or":
+                # result = False
+                # for state in goal_state:
+                result = self._eval_predicate(goal_state) #or result
+                final_result = result if final_result is None else final_result or result
+            else:
+                raise ValueError(f"Unsupported goal conjunction {goal_conj}.")
+        
+        return final_result
 
     def _eval_predicate(self, state):
         if len(state) == 3:

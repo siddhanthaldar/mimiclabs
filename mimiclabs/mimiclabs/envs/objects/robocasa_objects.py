@@ -14,8 +14,8 @@ from ...utils import disable_module_import
 
 # with disable_module_import("robocasa"):
 #     from robocasa.models import assets_root as robocasa_assets_root
-# robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
-robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+# robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
 BASE_ASSET_PATH = os.path.join(robocasa_assets_root, "objects")
 BASE_FIXTURE_PATH = os.path.join(robocasa_assets_root, "fixtures")
 

@@ -47,6 +47,7 @@
 
   (:goal
     (And (On bowl plate))
+    (And (NoGrasp bowl))
   )
 
   (:demonstration

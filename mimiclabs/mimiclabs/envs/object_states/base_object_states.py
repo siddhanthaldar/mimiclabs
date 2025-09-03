@@ -172,9 +172,35 @@ class ObjectState(BaseObjectState):
         if self.has_turnon_affordance:
             self.turn_on()
 
-    def check_grasp(self):
+    def check_grasp(self, gripper=None, object_geoms=None):
+
+        if gripper is None:
+            gripper = self.env.robots[0].gripper
+        if object_geoms is None:
+            object_geoms = self.env.get_object(self.object_name)
+
         return self.env._check_grasp(
-            gripper=self.env.robots[0].gripper,
-            object_geoms=self.env.get_object(self.object_name),
+            gripper=gripper,
+            object_geoms=object_geoms,
         )
         # NOTE(VS): need support to check grasps from multiple grippers in the future
+    
+    def check_grasp_tolerant(self, gripper=None, object_geoms=None):
+        """
+        Tolerant version of check grasp function - often needed for checking grasp with Shapenet mugs.
+
+        TODO: only tested for panda, update for other robots.
+        """
+
+        if gripper is None:
+            gripper = self.env.robots[0].gripper
+        if object_geoms is None:
+            object_geoms = self.env.get_object(self.object_name)
+
+        check_1 = self.check_grasp(gripper=gripper, object_geoms=object_geoms)
+
+        check_2 = self.check_grasp(gripper=["gripper0_finger1_collision", "gripper0_finger2_pad_collision"], object_geoms=object_geoms)
+
+        check_3 = self.check_grasp(gripper=["gripper0_finger2_collision", "gripper0_finger1_pad_collision"], object_geoms=object_geoms)
+
+        return check_1 or check_2 or check_3

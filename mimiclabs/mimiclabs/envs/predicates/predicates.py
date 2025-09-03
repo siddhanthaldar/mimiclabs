@@ -7,3 +7,7 @@ with disable_module_import("libero", "libero", "envs"):
 class Grasp(UnaryAtomic):
     def __call__(self, arg1):
         return arg1.check_grasp()
+
+class NoGrasp(UnaryAtomic):
+    def __call__(self, arg1):
+        return not arg1.check_grasp_tolerant()
