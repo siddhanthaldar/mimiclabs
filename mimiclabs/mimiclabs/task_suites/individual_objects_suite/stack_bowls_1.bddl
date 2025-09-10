@@ -1,8 +1,8 @@
 (define (problem MimicLabs_Lab1_Tabletop_Manipulation)
   (:domain robosuite)
-  (:language put the mug on the plate)
+  (:language stack the bowls)
     (:regions
-      (plate_init_region
+      (bowl1_init_region
           (:target table)
           (:ranges (
               (-0.2 -0.175 0.0 0.175)
@@ -13,7 +13,7 @@
             )
           )
       )
-      (mug_init_region
+      (bowl2_init_region
           (:target table)
           (:ranges (
               (-0.2 -0.175 0.0 0.175)
@@ -31,27 +31,28 @@
   )
 
   (:objects
-    plate - robocasa_plate_1_9
-    mug - robocasa_mug_8
+    bowl1 - robocasa_bowl_1
+    bowl2 - robocasa_bowl_0
   )
 
   (:obj_of_interest
-    plate
-    mug
+    bowl1
+    bowl2
   )
 
   (:init
-    (On plate table_plate_init_region)
-    (On mug table_mug_init_region)
+    (On bowl1 table_bowl1_init_region)
+    (On bowl2 table_bowl2_init_region)
   )
 
   (:goal
-    (And (On mug plate))
+    (And (On bowl1 bowl2))
+    (And (NoGrasp bowl1))
   )
 
   (:demonstration
-    (Grasp mug)
-    (On mug plate)
+    (Grasp bowl1)
+    (On bowl1 bowl2)
   )
 
 )
