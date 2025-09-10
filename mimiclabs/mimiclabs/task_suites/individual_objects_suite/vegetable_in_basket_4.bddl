@@ -1,0 +1,57 @@
+(define (problem MimicLabs_Lab1_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the vegetable in the basket)
+    (:regions
+      (basket_init_region
+          (:target table)
+          (:ranges (
+              (-0.15 -0.2 0.05 -0.05)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (vegetable_init_region
+          (:target table)
+          (:ranges (
+              (-0.15 -0.03 0.05 0.2)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:fixtures
+    table - table
+  )
+
+  (:objects
+    basket - libero_basket_0
+    vegetable - robocasa_orange_5
+  )
+
+  (:obj_of_interest
+    basket
+    vegetable
+  )
+
+  (:init
+    (On basket table_basket_init_region)
+    (On vegetable table_vegetable_init_region)
+  )
+
+  (:goal
+    (And (On vegetable basket))
+  )
+
+  (:demonstration
+    (Grasp vegetable)
+    (On vegetable basket)
+  )
+
+)

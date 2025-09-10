@@ -1,6 +1,7 @@
 import os
 import re
 import random
+import numpy as np
 
 from robosuite.models.objects import MujocoXMLObject
 import xml.etree.ElementTree as ET
@@ -15,6 +16,7 @@ from ...utils import disable_module_import
 # with disable_module_import("robocasa"):
 #     from robocasa.models import assets_root as robocasa_assets_root
 robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
+libero_root = "/Users/siddhanth/mimiclabs_data_gen/github/LIBERO/libero/libero"
 # robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
 BASE_ASSET_PATH = os.path.join(robocasa_assets_root, "objects")
 BASE_FIXTURE_PATH = os.path.join(robocasa_assets_root, "fixtures")
@@ -56,6 +58,24 @@ class RobocasaObject(MujocoXMLObject):
             "vis_site_names": {},
         }
 
+class GoogleScannedObject(MujocoXMLObject):
+    def __init__(self, name, obj_name, joints=[dict(type="free", damping="0.0005")]):
+        super().__init__(
+            os.path.join(
+                str(libero_root),
+                f"assets/stable_scanned_objects/{obj_name}/{obj_name}.xml",
+            ),
+            name=name,
+            joints=joints,
+            obj_type="all",
+            duplicate_collision_geoms=False,
+        )
+        self.category_name = "_".join(
+            re.sub(r"([A-Z])", r" \1", self.__class__.__name__).split()
+        ).lower()
+        self.rotation = (np.pi / 2, np.pi / 2)
+        self.rotation_axis = "x"
+        self.object_properties = {"vis_site_names": {}}
 
 @register_object
 class RobocasaAvocado0(RobocasaObject):
@@ -1498,3 +1518,8 @@ class RobocasaTray1(RobocasaObject):
             name=name,
             joints=[dict(type="free")],
         )
+
+@register_object
+class LiberoBasket0(GoogleScannedObject):
+    def __init__(self, name="libero_basket_0", obj_name="basket"):
+        super().__init__(name, obj_name)
