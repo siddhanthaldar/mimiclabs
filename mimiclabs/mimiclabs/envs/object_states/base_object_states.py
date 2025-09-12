@@ -103,7 +103,8 @@ class ObjectState(BaseObjectState):
             and self.check_contact(other)
             and (
                 np.linalg.norm(this_object_position[:2] - other_object_position[:2])
-                < 0.03
+                # < 0.03
+                < 0.05
             )
         )
 
