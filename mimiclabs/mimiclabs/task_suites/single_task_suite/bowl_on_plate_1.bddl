@@ -5,7 +5,7 @@
       (plate_init_region
           (:target table)
           (:ranges (
-              (-0.0 -0.1 0.1 0.1)
+              (-0.2 -0.175 0.0 0.175)
             )
           )
           (:yaw_rotation (
@@ -16,7 +16,7 @@
       (bowl_init_region
           (:target table)
           (:ranges (
-              (-0.1 -0.0 0.1 0.1)
+              (-0.2 -0.175 0.0 0.175)
             )
           )
           (:yaw_rotation (
@@ -31,27 +31,28 @@
   )
 
   (:objects
-    plate_1_9 - robocasa_plate_1_9
-    bowl_1 - robocasa_bowl_1
+    plate - robocasa_plate_1_9
+    bowl - robocasa_bowl_0
   )
 
   (:obj_of_interest
-    plate_1_9
-    bowl_1
+    plate
+    bowl
   )
 
   (:init
-    (On plate_1_9 table_plate_init_region)
-    (On bowl_1 table_bowl_init_region)
+    (On plate table_plate_init_region)
+    (On bowl table_bowl_init_region)
   )
 
   (:goal
-    (And (On bowl_1 plate_1_9))
+    (And (On bowl plate))
+    (And (NoGrasp bowl))
   )
 
   (:demonstration
-    (Grasp bowl_1)
-    (On bowl_1 plate_1_9)
+    (Grasp bowl)
+    (On bowl plate)
   )
 
 )

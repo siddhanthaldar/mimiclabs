@@ -1,11 +1,11 @@
 (define (problem MimicLabs_Lab1_Tabletop_Manipulation)
   (:domain robosuite)
-  (:language put the spatula on the pan)
+  (:language put the bowl on the plate)
     (:regions
-      (pan_init_region
+      (plate_init_region
           (:target table)
           (:ranges (
-              (-0.2 -0.2 0.2 0.3)
+              (-0.2 -0.175 0.0 0.175)
             )
           )
           (:yaw_rotation (
@@ -13,10 +13,10 @@
             )
           )
       )
-      (spatula_init_region
+      (bowl_init_region
           (:target table)
           (:ranges (
-              (-0.2 -0.2 0.2 0.3)
+              (-0.2 -0.175 0.0 0.175)
             )
           )
           (:yaw_rotation (
@@ -31,27 +31,27 @@
   )
 
   (:objects
-    pan_1 - robocasa_pan_1
-    mushroom_0 - robocasa_mushroom_0
+    plate - robocasa_plate_1_9
+    bowl - robocasa_bowl_6
   )
 
   (:obj_of_interest
-    pan_1
-    mushroom_0
+    plate
+    bowl
   )
 
   (:init
-    (On pan_1 table_pan_init_region)
-    (On mushroom_0 table_spatula_init_region)
+    (On plate table_plate_init_region)
+    (On bowl table_bowl_init_region)
   )
 
   (:goal
-    (And (On mushroom_0 pan_1))
+    (And (On bowl plate))
   )
 
   (:demonstration
-    (Grasp mushroom_0)
-    (On mushroom_0 pan_1)
+    (Grasp bowl)
+    (On bowl plate)
   )
 
 )
