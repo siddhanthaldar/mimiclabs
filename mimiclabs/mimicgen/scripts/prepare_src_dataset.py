@@ -71,7 +71,7 @@ if __name__ == "__main__":
         parent_dir = os.path.dirname(current_dir)
         parent_dir = os.path.dirname(parent_dir)
         bddl_name = bddl_file_name.split("/")[-1]
-        bddl_file_name = os.path.join(parent_dir, "mimiclabs", "task_suites", "individual_objects_suite", bddl_name)
+        bddl_file_name = os.path.join(parent_dir, "mimiclabs", "task_suites", "new_task_suite", bddl_name)
 
         parsed_problem = BDDLUtils.robosuite_parse_problem(bddl_file_name)
         if len(parsed_problem["demonstration_states"]) == 0:
