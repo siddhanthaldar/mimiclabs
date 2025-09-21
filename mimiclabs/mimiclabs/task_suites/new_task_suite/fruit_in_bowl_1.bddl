@@ -1,0 +1,57 @@
+(define (problem MimicLabs_Lab1_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language put the fruit in the bowl)
+    (:regions
+      (bowl_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.175 0.0 0.175)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+      (vegetable_init_region
+          (:target table)
+          (:ranges (
+              (-0.2 -0.175 0.0 0.175)
+            )
+          )
+          (:yaw_rotation (
+              (0.0 0.0)
+            )
+          )
+      )
+    )
+
+  (:fixtures
+    table - table
+  )
+
+  (:objects
+    bowl - robocasa_bowl_0
+    vegetable - robocasa_peach_0
+  )
+
+  (:obj_of_interest
+    bowl
+    vegetable
+  )
+
+  (:init
+    (On bowl table_bowl_init_region)
+    (On vegetable table_vegetable_init_region)
+  )
+
+  (:goal
+    (And (On vegetable bowl))
+  )
+
+  (:demonstration
+    (Grasp vegetable)
+    (On vegetable bowl)
+  )
+
+)
