@@ -49,12 +49,7 @@ except ImportError:
 
 try:
     # try to import robocasa environments
-    # with disable_module_import("robocasa"):
-    #     from robocasa.models import assets_root as robocasa_assets_root
-
-    #     ROBOCASA_PATH = os.path.dirname(os.path.dirname(robocasa_assets_root))
-    # ROBOCASA_PATH = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa"
-    ROBOCASA_PATH = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa"
+    ROBOCASA_PATH = os.path.join(os.path.dirname(__file__), "../../../../robocasa/robocasa")
 except ImportError:
     print("WARNING: could not import robocasa envs")
 

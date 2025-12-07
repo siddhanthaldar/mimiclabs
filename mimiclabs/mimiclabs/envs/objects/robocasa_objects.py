@@ -13,12 +13,8 @@ from libero.libero.envs.base_object import (
 from ...utils import disable_module_import
 
 
-# with disable_module_import("robocasa"):
-#     from robocasa.models import assets_root as robocasa_assets_root
-# robocasa_assets_root = "/Users/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
-# libero_root = "/Users/siddhanth/mimiclabs_data_gen/github/LIBERO/libero/libero"
-robocasa_assets_root = "/home/siddhanth/mimiclabs_data_gen/github/robocasa/robocasa/models/assets"
-libero_root = "/home/siddhanth/github/Point-Bridge/third_party/LIBERO/libero/libero"
+robocasa_assets_root = os.path.join(os.path.dirname(__file__), "../../../../../robocasa/robocasa/models/assets")
+libero_root = os.path.join(os.path.dirname(__file__), "../../../../../LIBERO/libero/libero")
 BASE_ASSET_PATH = os.path.join(robocasa_assets_root, "objects")
 BASE_FIXTURE_PATH = os.path.join(robocasa_assets_root, "fixtures")
 
